@@ -1,0 +1,12 @@
+.NavBar {
+    padding: 10px;
+    background-color: var(--bars-bg-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.right {
+    margin-left: auto;
+}

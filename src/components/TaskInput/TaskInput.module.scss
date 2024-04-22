@@ -1,0 +1,35 @@
+.TaskInput {
+    background-color: #2E2E2E;
+    border-radius: 20px;
+    border: solid 2px rgba(#000, 0);
+    width: fit-content;
+    &:hover {
+        border: solid 2px var(--bars-bg-color);
+        box-shadow: 2px 4px 4px rgba(23,23,23,0.75);
+    }
+    &::placeholder {
+        color: black;
+    }
+    &.light {
+        background-color: white;
+        box-shadow: 2px 4px 4px rgba(23,23,23,0.75);
+    }
+}
+
+.Input {
+    background: none;
+    width: 240px;
+    color: var(--primary-color);
+}
+
+.Button {
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 8px;
+    transform: scale(1) ;
+    transition: transform .2s ease-in-out;
+    color: var(--primary-color);
+    &:hover {
+        transform: scale(1.3) ;
+    }
+}
