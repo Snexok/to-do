@@ -1,10 +1,16 @@
 .TaskList {
-    margin-top: 20px;
-    padding: 12px;
-    border-radius: 20px;
-    background-color: #2e2e2e;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    min-width: 480px;
+
+    width: 480px;
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 20px;
+
+    background: var(--bg-primary-color);
+
+    &.light {
+        box-shadow: 2px 4px 4px rgba(23,23,23,0.75);
+    }
 }

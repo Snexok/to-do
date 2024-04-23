@@ -1,5 +1,52 @@
 .Task {
-   background: #404042;
+   display: flex;
+   justify-content: space-between;
+
    padding: 4px 8px;
    border-radius: 12px;
+
+   color: var(--secondary-color);
+   background: var(--bg-secondary-color);
+
+   &.light {
+       box-shadow: 2px 4px 8px rgba(23,23,23,0.75);
+   }
+}
+
+.leftContainer {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   gap: 8px;
+}
+
+.checkBox {
+   width: 16px;
+   height: 16px;
+   border-radius: 4px;
+
+   background-color: var(--secondary-color);
+
+   &.complete {
+      background-color: white;
+   }
+   svg {
+      transform: scale(1.5);
+      fill: var(--green-color);
+   }
+}
+
+.remove {
+   fill: var(--bg-primary-color);
+
+   transform: scale(1);
+   &:hover svg {
+      transform: scale(1.2) translate(0, 10%);
+      transition: 0.3s ease-in-out;
+      fill: var(--red-color);
+   }
+}
+
+.hidden {
+   display: none;
 }
