@@ -1,11 +1,14 @@
 import { TaskInput } from "components/TaskInput"
 import { TaskList } from "components/TaskList"
+import { TasksProvider } from "components/TasksProvider"
 
 export const MainPage = () => {
     return (
         <div>
-            <TaskInput/>
-            <TaskList/>
+            <TasksProvider>
+                <TaskInput/>
+                <TaskList/>
+            </TasksProvider>
         </div>
     )
 }

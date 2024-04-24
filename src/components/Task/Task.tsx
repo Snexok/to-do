@@ -1,15 +1,20 @@
-import { useRef, useState } from "react"
+import { FC, useRef, useState } from "react"
 import { Button, ThemeButton } from "components/UIkit/Button"
 import { useTheme } from "components/ThemeProvider"
 import classNames from "classnames"
 import cls from "./Task.module.scss"
 import Trash from "assets/trash-remove-icon.svg"
 import Complete from "assets/ok-complete-icon.svg"
+import { TaskType } from "./type"
 
-export const Task = () => {
+interface TaskProps {
+    task: TaskType
+}
+
+export const Task:FC<TaskProps> = ({task}) => {
     const {theme} = useTheme()
 
-    const [isComplete, setIsComplete] = useState(false)
+    const [isComplete, setIsComplete] = useState(task.isComplete)
     const [mouseOver, setMouseOver] = useState(false)
 
     const handlerMouseOver = () => {
@@ -33,7 +38,7 @@ export const Task = () => {
                     { isComplete ? <Complete/> : undefined }
                 </Button>
                 <div className={cls.text}>
-                    Text
+                    { task.text }
                 </div>
             </div>
             <div>

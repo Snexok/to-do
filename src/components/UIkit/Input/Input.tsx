@@ -1,15 +1,21 @@
 import classNames from "classnames"
 import cls from "./Input.module.scss"
-import { FC, InputHTMLAttributes } from "react"
+import { FC, InputHTMLAttributes, MutableRefObject } from "react"
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     className?: string
 }
 
 export const Input:FC<InputProps> = (props) => {
-    const {className, placeholder} = props
+    const {className, placeholder, value, onChange, onKeyDown} = props
 
     return (
-        <input placeholder={placeholder} className={classNames(cls.Input, className)}/>
+        <input
+            value={value}
+            placeholder={placeholder} 
+            className={classNames(cls.Input, className)}
+            onChange={onChange}
+            onKeyDown={onKeyDown}
+        />
     )
 }
