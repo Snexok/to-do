@@ -10,13 +10,15 @@ import { TasksContext } from "components/TasksProvider/TasksContext"
 export const TaskInput = () => {
     const { theme } = useTheme()
     const { tasks, setTasks } = useContext(TasksContext)
-    const [task, setTask] = useState("")
+    const [taskText, setTaskText] = useState("")
 
     const handlerTaskAdd = () => {
-        console.log(task);
+        const maxId = tasks.length ? Math.max(...tasks.map(task => task.id)) + 1 : 0
+        setTasks([{id: maxId, text: taskText, isComplete: false}, ...tasks])
+        setTaskText("")
     }
     const handlerTaskInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setTask(e.target.value)
+        setTaskText(e.target.value)
     }
     const handlerKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         if(e.key === 'Enter')
@@ -28,6 +30,7 @@ export const TaskInput = () => {
             <Input
                 placeholder="Ввод"
                 className={cls.Input}
+                value={taskText}
                 onChange={handlerTaskInput}
                 onKeyDown={handlerKeyDown}
             />

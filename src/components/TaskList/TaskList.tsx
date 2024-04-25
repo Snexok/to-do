@@ -6,12 +6,12 @@ import { useContext } from "react"
 import { TasksContext } from "components/TasksProvider/TasksContext"
 
 export const TaskList = () => {
-    const {theme} = useTheme()
-    const { tasks, setTasks } = useContext(TasksContext)
+    const { theme } = useTheme()
+    const { tasks } = useContext(TasksContext)
 
     return (
         <div className={classNames(cls.TaskList, cls[theme])}>
-            { tasks.map(task => <Task task={task}/>) }
+            { tasks.map(task => <Task key={task.id} task={task}/>) }
         </div>
     )
 }
