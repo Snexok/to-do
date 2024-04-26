@@ -3,7 +3,7 @@ import { Button, ThemeButton } from "components/UIkit/Button"
 import { useTheme } from "components/ThemeProvider"
 import classNames from "classnames"
 import { TaskType } from "./type"
-import { TasksContext } from "components/TasksProvider/TasksContext"
+import { LOCAL_STORAGE_TASKS_KEY, TasksContext } from "components/TasksProvider/TasksContext"
 import cls from "./Task.module.scss"
 import Trash from "assets/trash-remove-icon.svg"
 import Complete from "assets/ok-complete-icon.svg"
@@ -19,13 +19,17 @@ export const Task:FC<TaskProps> = ({task}) => {
     const { tasks, setTasks } = useContext(TasksContext)
 
     const handlerClickComplete = () => {
-        setTasks( tasks.map(
+        const newTasks = tasks.map(
             t => t.id === task.id
             ? {...t, isComplete: !t.isComplete} 
-            : t) )
+            : t)
+        setTasks( newTasks )
+        localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(newTasks))
     }
     const handlerClickDelete = () => {
-        setTasks( tasks.filter(t => t.id !== task.id) )
+        const newTasks = tasks.filter(t => t.id !== task.id)
+        setTasks( newTasks )
+        localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(newTasks))
     }
     const handlerMouseOver = () => {
         setMouseOver(true)

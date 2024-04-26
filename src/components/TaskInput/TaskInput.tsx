@@ -4,17 +4,20 @@ import cls from "./TaskInput.module.scss"
 import { useTheme } from "components/ThemeProvider"
 import classNames from "classnames"
 import { ChangeEvent, KeyboardEvent, useContext, useState } from "react"
-import { TasksContext } from "components/TasksProvider/TasksContext"
+import { LOCAL_STORAGE_TASKS_KEY, TasksContext } from "components/TasksProvider/TasksContext"
 
 
 export const TaskInput = () => {
     const { theme } = useTheme()
-    const { tasks, setTasks } = useContext(TasksContext)
     const [taskText, setTaskText] = useState("")
+    const { tasks, setTasks } = useContext(TasksContext)
 
     const handlerTaskAdd = () => {
         const maxId = tasks.length ? Math.max(...tasks.map(task => task.id)) + 1 : 0
-        setTasks([{id: maxId, text: taskText, isComplete: false}, ...tasks])
+        const newTasks = [{id: maxId, text: taskText, isComplete: false}, ...tasks]
+        setTasks(newTasks)
+        localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(newTasks))
+        
         setTaskText("")
     }
     const handlerTaskInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +31,7 @@ export const TaskInput = () => {
     return (
         <div className={classNames(cls.TaskInput, cls[theme])}>
             <Input
-                placeholder="Ввод"
+                placeholder="Введите задачу"
                 className={cls.Input}
                 value={taskText}
                 onChange={handlerTaskInput}

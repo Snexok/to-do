@@ -10,8 +10,13 @@ export const TaskList = () => {
     const { tasks } = useContext(TasksContext)
 
     return (
-        <div className={classNames(cls.TaskList, cls[theme])}>
-            { tasks.map(task => <Task key={task.id} task={task}/>) }
-        </div>
+        <> 
+            <div className={classNames(cls.TaskList, cls[theme])}>
+                { tasks.length 
+                ? tasks.map(task => <Task key={task.id} task={task}/>) 
+                : <p className={cls.empty}>Список задач пуст 🥲</p>
+                }
+            </div>
+        </>
     )
 }
