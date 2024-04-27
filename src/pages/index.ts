@@ -1,3 +1,3 @@
-export { AboutPage } from './AboutPage';
-export { MainPage } from './MainPage';
-export { ErrorPage } from './ErrorPage';
+export { AboutPage } from './AboutPage/AboutPage';
+export { MainPage } from './MainPage/MainPage';
+export { ErrorPage } from './ErrorPage/ErrorPage';

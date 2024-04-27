@@ -1,0 +1,15 @@
+.AboutPage {
+    text-align: center;
+}
+
+.link {
+    &.light {
+        color: black;
+    }
+}
+
+.github {
+    &.dark {
+        fill: white;
+    }
+}
