@@ -15,7 +15,7 @@ export const AboutPage = () => {
             Реализован функционал <b>CRUD</b><br/>
             с использованием <b>LocalStorage</b><br/>
             <br/>
-            Репозиторий на <AppLink to="https://github.com/Snexok/to-do" className={classNames(cls.link, [cls[theme]])}>GitHub <GitHub className={classNames(cls.github, [cls[theme]])}/></AppLink>
+            Мой репозиторий на <AppLink to="https://github.com/Snexok/to-do" className={classNames(cls.link, [cls[theme]])}>GitHub <GitHub className={classNames(cls.github, [cls[theme]])}/></AppLink>
         </div>
     )
 }
