@@ -34,7 +34,7 @@ export const Task:FC<TaskProps> = ({task, complete, remove}) => {
                 <Button
                     theme={ThemeButton.CLEAR}
                     className={classNames(cls.checkBox, {[cls.complete]: task.isComplete})}
-                    onClick={complete.bind(task.id)}
+                    onClick={() => complete(task.id)}
                 >
                     { task.isComplete ? <Complete/> : undefined }
                 </Button>
@@ -46,7 +46,7 @@ export const Task:FC<TaskProps> = ({task, complete, remove}) => {
                 <Button
                     theme={ThemeButton.CLEAR} 
                     className={classNames(cls.remove, {[cls.hidden]: !mouseOver})}
-                    onClick={remove.bind(task.id)}
+                    onClick={() => remove(task.id)}
                 >
                     <Trash/>
                 </Button>
