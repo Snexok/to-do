@@ -1,36 +1,23 @@
-import { FC, useContext, useRef, useState } from "react"
+import { FC, useState } from "react"
 import { Button, ThemeButton } from "components/UIkit/Button"
 import { useTheme } from "components/ThemeProvider"
 import classNames from "classnames"
 import { TaskType } from "./type"
-import { LOCAL_STORAGE_TASKS_KEY, TasksContext } from "components/TasksProvider/TasksContext"
 import cls from "./Task.module.scss"
 import Trash from "assets/trash-remove-icon.svg"
 import Complete from "assets/ok-complete-icon.svg"
 
 interface TaskProps {
-    task: TaskType
+    task: TaskType,
+    complete: (id: number) => void,
+    remove: (id: number) => void
 }
 
-export const Task:FC<TaskProps> = ({task}) => {
+export const Task:FC<TaskProps> = ({task, complete, remove}) => {
     const { theme } = useTheme()
 
     const [mouseOver, setMouseOver] = useState(false)
-    const { tasks, setTasks } = useContext(TasksContext)
 
-    const handlerClickComplete = () => {
-        const newTasks = tasks.map(
-            t => t.id === task.id
-            ? {...t, isComplete: !t.isComplete} 
-            : t)
-        setTasks( newTasks )
-        localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(newTasks))
-    }
-    const handlerClickDelete = () => {
-        const newTasks = tasks.filter(t => t.id !== task.id)
-        setTasks( newTasks )
-        localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(newTasks))
-    }
     const handlerMouseOver = () => {
         setMouseOver(true)
     }
@@ -47,7 +34,7 @@ export const Task:FC<TaskProps> = ({task}) => {
                 <Button
                     theme={ThemeButton.CLEAR}
                     className={classNames(cls.checkBox, {[cls.complete]: task.isComplete})}
-                    onClick={handlerClickComplete}
+                    onClick={complete.bind(task.id)}
                 >
                     { task.isComplete ? <Complete/> : undefined }
                 </Button>
@@ -59,7 +46,7 @@ export const Task:FC<TaskProps> = ({task}) => {
                 <Button
                     theme={ThemeButton.CLEAR} 
                     className={classNames(cls.remove, {[cls.hidden]: !mouseOver})}
-                    onClick={handlerClickDelete}
+                    onClick={remove.bind(task.id)}
                 >
                     <Trash/>
                 </Button>
